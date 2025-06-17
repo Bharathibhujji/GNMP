@@ -15,7 +15,7 @@ public class ServicePage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @FindBy(xpath = "\"//a[contains(text(),'Explore Our Services')]\"")
+    @FindBy(xpath = "//a[contains(.,'Explore Our Services')]\")")
     private WebElement servicelink; 
 
     @FindBy(id = "videoAdvertisement")
