@@ -2,6 +2,7 @@ package com.GunaMarket.POM;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,8 +16,9 @@ public class ServicePage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @FindBy(xpath = "//a[contains(text(),'Explore Our Services')]")
-    private WebElement servicelink; 
+    // Remove this if not using anymore
+    // @FindBy(xpath = "//a[contains(text(),'Explore Our Services')]")
+    // private WebElement servicelink;
 
     @FindBy(id = "videoAdvertisement")
     private WebElement videoAdOption;
@@ -26,26 +28,23 @@ public class ServicePage {
 
     public ServicePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(50));
         PageFactory.initElements(driver, this);
     }
 
     public void exploreService() {
-        wait.until(ExpectedConditions.visibilityOf(servicelink));
-        servicelink.click();
+        By serviceLinkLocator = By.xpath("//a[contains(text(),'Explore Our Services')]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(serviceLinkLocator)).click();
     }
 
     public void clickVideoAdvertisement() {
-        wait.until(ExpectedConditions.elementToBeClickable(videoAdOption));
-        videoAdOption.click();
+        wait.until(ExpectedConditions.elementToBeClickable(videoAdOption)).click();
     }
 
     public void clickActivateButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(activateButton));
-        activateButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(activateButton)).click();
     }
 
-    // Combined flow
     public void servicing() {
         exploreService();
         clickVideoAdvertisement();
